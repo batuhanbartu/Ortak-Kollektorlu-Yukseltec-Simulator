@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ortak Kollektörlü Yükselteç</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Ortak Kollektörlü Yükselteç Simülatörü</h1>
+        <a href="about.html" class="about-link">Hakkımızda</a>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Devre Şeması</h2>
+            <div id="devre_div">
+                <img src="images/devre_semasi.jpg" alt="Devre Şeması">
+            </div>
+            <div class="dc_input">
+                <div>
+                    <label for="r1">R1 (Ω):</label>
+                </div>
+                <div>
+                    <input id="r1" type="number" placeholder="R1 (Ω)" value="100">
+                </div>
+                <div>
+                    <label for="r2">R2 (Ω):</label>
+                </div>
+                <div>
+                    <input id="r2" type="number" placeholder="R2 (Ω)" value="470">
+                </div>
+                <div>
+                    <label for="ry">Ry (Ω):</label>
+                </div>
+                <div>
+                    <input id="ry" type="number" placeholder="Ry (Ω)" value="680">
+                </div>
+                <div>
+                    <label for="re">Re (Ω):</label>
+                </div>
+                <div>
+                    <input id="re" type="number" placeholder="Re (Ω)" value="100">
+                </div>
+                <div>
+                    <label for="c1">C1:</label>
+                </div>
+                <div>
+                    <input id="c1" type="number" placeholder="C1" value="10">
+                </div>
+                <div>
+                    <label for="c2">C2:</label>
+                </div>
+                <div>
+                    <input id="c2" type="number" placeholder="C2" value="100">
+                </div>
+                <div><label for="vcc">Vcc (V):</label></div>
+                <div><input id="vcc" type="number" placeholder="Vcc (V)" value="15"></div>
+                <div><label for="rx">Rx (Ω):</label></div>
+                <div><input id="rx" type="number" placeholder="Rx (Ω)" value="120"></div>
+                <div><label for="cpi">Cπ (F):</label></div>
+                <div><input id="cpi" type="number" placeholder="Cπ (F)" value="20"></div>
+                <div><label for="cnu">Cμ (F):</label></div>
+                <div><input id="cnu" type="number" placeholder="Cμ (F)" value="100"></div>
+                <div><label for="rg">Rg (Ω):</label></div>
+                <div><input id="rg" type="number" placeholder="Rg (Ω)" value="470"></div>
+                <div><label for="vg">Vg (V):</label></div>
+                <div><input id="vg" type="number" placeholder="Vg (V)" value="8"></div>
+                
+                <div><label for="currentUnit">Akım Birimi:</label></div>
+                <div>
+                    <select id="currentUnit">
+                        <option value="A">Amper (A)</option>
+                        <option value="mA">Miliamper (mA)</option>
+                        <option value="µA">Mikroamper (µA)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="voltageUnit">Gerilim Birimi:</label>
+                </div>
+                <div>
+                    <select id="voltageUnit">
+                        <option value="V">Volt (V)</option>
+                        <option value="mV">Milivolt (mV)</option>
+                        <option value="kV">Kilovolt (kV)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="frequencyUnit">Frekans Birimi:</label>
+                </div>
+                <div>
+                    <select id="frequencyUnit">
+                        <option value="Hz">Hertz (Hz)</option>
+                        <option value="mHz">Milihertz (mHz)</option>
+                        <option value="µHz">Mikrohertz (µHz)</option>
+                    </select>
+                </div>
+            </div>
+            <button id="dc-analysis-button">Hesapla</button>
+        </div>
+
+        <div class="section">
+            <h2>DC Şeması</h2>
+            <div class="dc-resim">
+                <img src="images/dc_analiz.jpg" alt="DC Analiz Şeması" class="dc_analiz" style>
+            </div>
+            <div id="dc-results" class="results-section">
+                <h2>DC Analiz Sonuçları</h2>
+                <p>IB: <span id="ib"></span></p>
+                <p>IC: <span id="ic"></span></p>
+                <p>IE: <span id="ie"></span></p>
+                <p>VCE: <span id="vce"></span></p>
+                <p>VCB: <span id="vcb"></span></p>
+                <p>VBE: <span id="vbe"></span></p>
+                <p>Durum: <span id="durum"></span></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>AC Eşdeğer Devresi</h2>
+            <img src="images/ac_analiz.jpg" alt="AC Analiz Şeması">
+            <div id="ac-results" class="results-section">
+                <h2>AC Analiz Sonuçları</h2>
+                <p>fh: <span id="fh"></span></p>
+                <p>Kvi: <span id="kvi"></span></p>
+                <p>Kvi (dB): <span id="kvi_db"></span></p>
+            </div>
+            <h2>Yüksek Frekans Modeli</h2>
+            <img src="images/yuksek_frekans_model.jpg" alt="Yüksek Frekans Modeli">
+            <div id="graph-container">
+                <h2>Frekans Cevabı Kazancı</h2>
+                <canvas id="graph" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        <div class="footer_">
+            <p>© 2024 Bu site BM'ciler tarafından yapılmıştır.</p> 
+            <!--yo ben yaptım;)-->
+        </div>
+    </footer>
+</body>
+
+</html>
